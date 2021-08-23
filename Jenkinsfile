@@ -6,35 +6,34 @@ pipeline {
 
   //Opciones específicas de Pipeline dentro del Pipeline
   options {
-    	buildDiscarder(logRotator(numToKeepStr: '3'))
- 	disableConcurrentBuilds()
+        buildDiscarder(logRotator(numToKeepStr: '3'))
+     disableConcurrentBuilds()
   }
 
-
   //Aquí comienzan los “items” del Pipeline
-  stages{
+  stages {
     stage('Checkout') {
-      steps{
-        echo "------------>Checkout<------------"
-		checkout([
-			$class: 'GitSCM',
-			branches: [[name: '*/master']],
-			doGenerateSubmoduleConfigurations: false,
-			extensions: [],
-			gitTool: 'Default',
-			submoduleCfg: [],
-			userRemoteConfigs: [[
-			credentialsId: 'GitHub_andres-martinez26',
-			url:'https://github.com/andres-martinez26/adn_front_control_plaza.git'
-			]]
-		])
+      steps {
+        echo '------------>Checkout<------------'
+        checkout([
+            $class: 'GitSCM',
+            branches: [[name: '*/master']],
+            doGenerateSubmoduleConfigurations: false,
+            extensions: [],
+            gitTool: 'Default',
+            submoduleCfg: [],
+            userRemoteConfigs: [[
+            credentialsId: 'GitHub_andres-martinez26',
+            url:'https://github.com/andres-martinez26/adn_front_control_plaza.git'
+            ]]
+        ])
       }
     }
 
     stage('Prepare Node and NPM') { // confirm nodejs plugin and setting
       env.NODEJS_HOME = "${tool 'nodejs-14.17.5'}"
-	    env.PATH="${env.NODEJS_HOME}/bin:${env.PATH}"
-	    sh 'npm --version'
+      env.PATH = "${env.NODEJS_HOME}/bin:${env.PATH}"
+      sh 'npm --version'
     }
 
     stage('Prepare Angular CLI') { // install global angular cli
@@ -55,10 +54,10 @@ pipeline {
     }
 
     stage('Static Code Analysis') {
-      steps{
+      steps {
         echo '------------>Análisis de código estático<------------'
         withSonarQubeEnv('Sonar') {
-		      sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+              sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
         }
       }
     }
@@ -69,13 +68,13 @@ pipeline {
     }
     success {
       echo 'This will run only if successful'
-	  //si la ruta existe se ejecuta correctamente
+    //si la ruta existe se ejecuta correctamente
     }
     failure {
       echo 'This will run only if failed'
-	  mail (to: 'andres.martinez@ceiba.com.co',
-	  subject: "Failed Pipeline:${currentBuild.fullDisplayName}",
-	  body: "Something is wrong with ${env.BUILD_URL}")
+      mail (to: 'andres.martinez@ceiba.com.co',
+      subject: "Failed Pipeline:${currentBuild.fullDisplayName}",
+      body: "Something is wrong with ${env.BUILD_URL}")
     }
     unstable {
       echo 'This will run only if the run was marked as unstable'
@@ -84,5 +83,6 @@ pipeline {
       echo 'This will run only if the state of the Pipeline has changed'
       echo 'For example, if the Pipeline was previously failing but is now successful'
     }
+  }
   }
 }
