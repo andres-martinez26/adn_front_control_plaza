@@ -28,38 +28,50 @@ pipeline {
             ]]
         ])
       }
-      stage('Prepare Node and NPM') { // confirm nodejs plugin and setting
+    }
+
+    stage('Prepare Node and NPM') { // confirm nodejs plugin and setting
+      steps {
         env.NODEJS_HOME = "${tool 'nodejs-14.17.5'}"
         env.PATH = "${env.NODEJS_HOME}/bin:${env.PATH}"
         sh 'npm --version'
       }
+    }
 
-      stage('Prepare Angular CLI') { // install global angular cli
+    stage('Prepare Angular CLI') { // install global angular cli
+      steps {
         sh 'npm -g install @angular/cli'
         sh 'ng --version'
       }
+    }
 
-      stage('Prepare Angular Project') { // prepare angular adn_front_control_plaza app
+    stage('Prepare Angular Project') { // prepare angular adn_front_control_plaza app
+      steps {
         sh 'if [ ! -d adn_front_control_plaza ]; then ng new adn_front_control_plaza --style less; fi'
       }
+    }
 
-      stage('Build Angular Project') { // build angular adn_front_control_plaza app
+    stage('Build Angular Project') { // build angular adn_front_control_plaza app
+      steps {
         sh 'cd adn_front_control_plaza && npm install && npm run build'
       }
+    }
 
-      stage('Jasmine Unit Test') { // Unit Test
+    stage('Jasmine Unit Test') { // Unit Test
+      steps {
         sh 'export CHROME_BIN=/usr/bin/chromium-browser && cd adn_front_control_plaza && ng test --code-coverage'
       }
+    }
 
-      stage('Static Code Analysis') {
-        steps {
-          echo '------------>Análisis de código estático<------------'
-          withSonarQubeEnv('Sonar') {
-              sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
-          }
+    stage('Static Code Analysis') {
+      steps {
+        echo '------------>Análisis de código estático<------------'
+        withSonarQubeEnv('Sonar') {
+            sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
         }
       }
     }
+  }
 
     post {
       always {
@@ -83,5 +95,4 @@ pipeline {
         echo 'For example, if the Pipeline was previously failing but is now successful'
       }
     }
-  }
 }
