@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span class="container-alquiler">
+      <nav>
+        <a id="linkAlquiler" routerLink="./" routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">Alquiler</a>
+        <a id="linkCrearAlquiler" routerLink="./crear" routerLinkActive="active">Crear alquiler</a>
+        <a id="linkBorrarAlquiler" routerLink="./borrar" routerLinkActive="active">Borrar alquiler</a>
+        <a id="linkListarAlquiler" routerLink="./listar" routerLinkActive="active">Listar alquiler</a>
+      </nav>
+    </span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

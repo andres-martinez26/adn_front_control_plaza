@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { MaterialModule } from 'src/app/material/material.module';
 
 import { ProductoRoutingModule } from './producto-routing.module';
 import { BorrarProductoComponent } from './components/borrar-producto/borrar-producto.component';
@@ -18,7 +19,8 @@ import { ProductoService } from './shared/service/producto.service';
   ],
   imports: [
     ProductoRoutingModule,
-    SharedModule
+    SharedModule,
+    MaterialModule
   ],
   providers: [ProductoService]
 })
