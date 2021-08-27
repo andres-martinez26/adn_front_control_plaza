@@ -5,11 +5,12 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AlquilerRoutingModule } from './alquiler-routing-module'; 
 import { CommonModule } from '@angular/common';
-import { TrmService } from './shared/service/trm.service';
+import { TrmService } from './shared/service/trm/trm.service';
+import { AlquilerService } from './shared/service/alquiler/alquiler.service';
 import { AlquilerComponent } from './components/alquiler/alquiler.component';
 import { CrearAlquilerComponent } from './components/crear-alquiler/crear-alquiler.component';
-import { BorrarAlquilerComponent } from './components/borrar-alquiler/borrar-alquiler.component';
 import { ListarAlquilerComponent } from './components/listar-alquiler/listar-alquiler.component';
+import { EditarAlquilerComponent } from './components/editar-alquiler/editar-alquiler.component';
 
 
 
@@ -17,8 +18,8 @@ import { ListarAlquilerComponent } from './components/listar-alquiler/listar-alq
   declarations: [
     AlquilerComponent,
     CrearAlquilerComponent,
-    BorrarAlquilerComponent,
-    ListarAlquilerComponent
+    ListarAlquilerComponent,
+    EditarAlquilerComponent
   ],
   imports: [
     CommonModule,
@@ -27,6 +28,9 @@ import { ListarAlquilerComponent } from './components/listar-alquiler/listar-alq
     AlquilerRoutingModule,
     HttpClientModule
   ],
-  providers: [TrmService]
+  providers: [
+    TrmService,
+    AlquilerService
+  ]
 })
 export class AlquilerModule { }

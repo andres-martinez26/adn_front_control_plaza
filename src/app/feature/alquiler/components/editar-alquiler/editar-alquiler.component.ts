@@ -1,43 +1,49 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Alquiler } from '../../shared/model/alquiler';
 import { AlquilerService } from '../../shared/service/alquiler/alquiler.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-  selector: 'app-crear-alquiler',
-  templateUrl: './crear-alquiler.component.html',
-  styleUrls: ['./crear-alquiler.component.scss'],
+  selector: 'app-editar-alquiler',
+  templateUrl: './editar-alquiler.component.html',
+  styleUrls: ['./editar-alquiler.component.scss'],
   encapsulation: ViewEncapsulation.Emulated,
 })
-export class CrearAlquilerComponent implements OnInit {
+export class EditarAlquilerComponent implements OnInit {
 
   form: FormGroup;
-  alquiler: Alquiler;
+  id: number;
   abc = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","U","V","W","X","Y","Z"];
+
   constructor(
     private formBuilder: FormBuilder,
     protected alquilerService: AlquilerService,
-    private router: Router
+    private activeRoute: ActivatedRoute,
+    private router: Router,
   ) {
     this.buildForm();
    }
 
   ngOnInit(): void {
+    this.activeRoute.params.subscribe(params => {
+      this.id = params.id;
+      this.form.patchValue(params);
+    });
   }
 
   save(){
     const alquiler = this.form.value;
-    alquiler.fechaPago = alquiler.fechaPago + ' 00:00:00';
-    this.alquilerService.save(alquiler)
-    .subscribe(req => {
+    alquiler.id = this.id;
+    // alquiler.fechaPago = alquiler.fechaPago + ' 00:00:00';
+    this.alquilerService.update(this.id, alquiler)
+    .subscribe((req) => {
       console.log(req);
-      if (req['valor'] === 'El local ya fue alquilado' || req['valor'] === 'El usuario ya tiene alquilado un local'){
+      if (req['valor'] === 'El local ya fue alquilado' || req['valor'] === 'El registro ya existe en el sistema'){
         alert(req['valor']);
       }else {
-        alert( 'Guardado: ' + alquiler.nombre + ' debe \npagar el ' + req['valor']);
+        alert('Actualizado')
+        this.router.navigate(['./alquiler/listar']);
       }
-      this.router.navigate(['./alquiler/listar']);
     });
   }
 
@@ -49,11 +55,9 @@ export class CrearAlquilerComponent implements OnInit {
 
   private buildForm() {
     this.form = this.formBuilder.group({
-      id: ['', [Validators.required, Validators.pattern(/^-?(|[0-9]\d*)?$/), 
-                Validators.maxLength(10), Validators.minLength(10)]],
       nombre: ['', [Validators.required,]],
-      numero: ['', [Validators.required, Validators.pattern(/^-?(|[0-9]\d*)?$/), 
-                Validators.maxLength(10), Validators.minLength(10)]],
+      numero: ['', [Validators.required, Validators.pattern(/^-?(|[0-9]\d*)?$/),
+                      Validators.maxLength(10), Validators.minLength(10)]],
       fechaPago: ['YYYY-MM-DD', [Validators.required]],
       estadoPago: ['', [Validators.required]],
       letraLocal: ['', [Validators.required]]

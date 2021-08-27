@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlquilerService } from '../../shared/service/alquiler/alquiler.service';
 
 @Component({
   selector: 'app-listar-alquiler',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarAlquilerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private alquilerService: AlquilerService) { }
+
+  datos = [];
+  displayedColumns: string[] = ['id', 'nombre', 'estado', 'numero', 'actions'];
 
   ngOnInit(): void {
+    this.fetchData();
   }
 
+  fetchData() {
+    this.alquilerService.getAll()
+    .subscribe(datos => {
+      this.datos = datos;
+    });
+  }
+
+  delete(id: string){
+    this.alquilerService.delete(id)
+    .subscribe(() => {
+      this.fetchData();
+    });
+  }
 }

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BorrarAlquilerComponent } from './borrar-alquiler.component';
+import { EditarAlquilerComponent } from './editar-alquiler.component';
 
-describe('BorrarAlquilerComponent', () => {
-  let component: BorrarAlquilerComponent;
-  let fixture: ComponentFixture<BorrarAlquilerComponent>;
+describe('EditarAlquilerComponent', () => {
+  let component: EditarAlquilerComponent;
+  let fixture: ComponentFixture<EditarAlquilerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BorrarAlquilerComponent ]
+      declarations: [ EditarAlquilerComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BorrarAlquilerComponent);
+    fixture = TestBed.createComponent(EditarAlquilerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

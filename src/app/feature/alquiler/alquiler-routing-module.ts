@@ -1,11 +1,10 @@
-import { NgModule } from "@angular/core";
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AlquilerComponent } from "./components/alquiler/alquiler.component";
-import { CrearAlquilerComponent } from "./components/crear-alquiler/crear-alquiler.component";
-import { BorrarAlquilerComponent } from "./components/borrar-alquiler/borrar-alquiler.component";
-import { ListarAlquilerComponent } from "./components/listar-alquiler/listar-alquiler.component";
-
+import { AlquilerComponent } from './components/alquiler/alquiler.component';
+import { CrearAlquilerComponent } from './components/crear-alquiler/crear-alquiler.component';
+import { ListarAlquilerComponent } from './components/listar-alquiler/listar-alquiler.component';
+import { EditarAlquilerComponent } from './components/editar-alquiler/editar-alquiler.component';
 const routes: Routes = [
     {
       path: '',
@@ -20,14 +19,13 @@ const routes: Routes = [
           component: ListarAlquilerComponent
         },
         {
-          path: 'borrar',
-          component: BorrarAlquilerComponent
+          path: 'editar/:id/:nombre/:numero/:fechaPago/:estadoPago/:letraLocal',
+          component: EditarAlquilerComponent
         }
       ]
     }
   ];
-  
-  @NgModule({
+@NgModule({
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
   })
