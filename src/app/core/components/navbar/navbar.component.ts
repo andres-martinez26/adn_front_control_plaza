@@ -11,9 +11,12 @@ export class NavbarComponent implements OnInit {
   @Input()
   items: MenuItem[];
 
-  constructor() { }
+  constructor() { 
+    // Intencionado
+  }
 
   ngOnInit() {
+    // Intencionado
   }
 
 }

@@ -34,7 +34,6 @@ export class EditarAlquilerComponent implements OnInit {
   save(){
     const alquiler = this.form.value;
     alquiler.id = this.id;
-    // alquiler.fechaPago = alquiler.fechaPago + ' 00:00:00';
     this.alquilerService.update(this.id, alquiler)
     .subscribe((req) => {
       console.log(req);

@@ -1,22 +1,23 @@
 <table *ngIf="datos.length > 0"  mat-table [dataSource]="datos" class="mat-elevation-z8 alquiler-table">
-    <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> ID </th>
+  <caption> Resultados de los registros de locales alquialdos </caption>  
+  <ng-container matColumnDef="id">
+        <th scope = "col" mat-header-cell *matHeaderCellDef> ID </th>
         <td mat-cell *matCellDef="let datos"> {{datos.id}} </td>
       </ng-container>
       <ng-container matColumnDef="nombre">
-        <th mat-header-cell *matHeaderCellDef> nombre </th>
+        <th scope = "col" mat-header-cell *matHeaderCellDef> nombre </th>
         <td mat-cell *matCellDef="let datos"> {{datos.nombre}} </td>
       </ng-container>
       <ng-container matColumnDef="estado">
-        <th mat-header-cell *matHeaderCellDef> estado </th>
+        <th scope = "col" mat-header-cell *matHeaderCellDef> estado </th>
         <td mat-cell *matCellDef="let datos"> {{datos.estadoPago}} </td>
       </ng-container>
       <ng-container matColumnDef="numero">
-        <th mat-header-cell *matHeaderCellDef> número </th>
+        <th scope = "col" mat-header-cell *matHeaderCellDef> número </th>
         <td mat-cell *matCellDef="let datos"> {{datos.numero}} </td>
       </ng-container>
       <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef> acción </th>
+        <th scope = "col" mat-header-cell *matHeaderCellDef> acción </th>
         <td mat-cell *matCellDef="let datos"> 
           <a mat-raised-button [routerLink]="['../editar/', datos.id, datos.nombre, datos.numero, datos.fechaPago, datos.estadoPago, datos.letraLocal]">editar</a>
           <button mat-raised-button color="warn" (click)="delete(datos.id)">Eliminar</button>

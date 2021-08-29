@@ -1,5 +1,5 @@
 import { NgModule, ErrorHandler } from '@angular/core';
-import { MaterialModule } from '../material/material.module';
+import { MaterialModule } from '../feature/material/material.module';
 
 import { CommonModule } from '@angular/common';
 import { SecurityGuard } from './guard/security.guard';

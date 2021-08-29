@@ -24,6 +24,7 @@ export class CrearAlquilerComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    // Intencionado
   }
 
   save(){

@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlquilerComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+    // Intencionado
+  }
 
   ngOnInit(): void {
+    // Intencionado
   }
 
 }
