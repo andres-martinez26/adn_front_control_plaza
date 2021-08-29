@@ -5,7 +5,9 @@ import { HTTP_ERRORES_CODIGO } from './http-codigo-error';
 
 @Injectable()
 export class ManejadorError implements ErrorHandler {
-  constructor() {}
+  constructor() {
+    // Intencionado
+  }
 
   handleError(error: string | Error): void {
     const mensajeError = this.mensajePorDefecto(error);

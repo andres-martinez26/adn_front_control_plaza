@@ -1,0 +1,30 @@
+<div>
+    <form autocomplete="off" [formGroup]="form" class="form">
+        <mat-form-field>
+            <mat-label >Nombre: </mat-label>
+            <input formControlName="nombre" matInput type="text">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label >Numero: </mat-label>
+            <input formControlName="numero" matInput type="text">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label >Fecha de pago: </mat-label>
+            <input formControlName="fechaPago" matInput type="text">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label >Estado de pago: </mat-label>
+            <input formControlName="estadoPago" matInput type="text">
+        </mat-form-field>
+        <mat-form-field >
+            <mat-label>Letra del local</mat-label>
+            <mat-select formControlName="letraLocal">
+                <mat-option *ngFor="let letra of abc" [value]="letra">{{letra}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div>
+            <h3 *ngIf="form.invalid">Campos invalidos.</h3>
+            <button mat-raised-button color="primary" (click)="validar()">Actualizar</button>
+        </div>
+    </form>
+</div>
