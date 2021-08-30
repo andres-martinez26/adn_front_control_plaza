@@ -27,6 +27,12 @@ export class CrearAlquilerComponent implements OnInit {
     // Intencionado
   }
 
+  crear() {
+    this.alquilerService.save(this.form.value).subscribe(req => {
+      return req;
+    });
+  }
+
   save(){
     const alquiler = this.form.value;
     alquiler.fechaPago = alquiler.fechaPago + ' 00:00:00';
@@ -50,10 +56,10 @@ export class CrearAlquilerComponent implements OnInit {
 
   private buildForm() {
     this.form = this.formBuilder.group({
-      id: ['', [Validators.required, Validators.pattern(/^-?(|[0-9]\d*)?$/), 
+      id: ['', [Validators.required, Validators.pattern(/^-?(|[0-9]\d*)?$/),
                 Validators.maxLength(10), Validators.minLength(10)]],
-      nombre: ['', [Validators.required,]],
-      numero: ['', [Validators.required, Validators.pattern(/^-?(|[0-9]\d*)?$/), 
+      nombre: ['', [Validators.required, ]],
+      numero: ['', [Validators.required, Validators.pattern(/^-?(|[0-9]\d*)?$/),
                 Validators.maxLength(10), Validators.minLength(10)]],
       fechaPago: ['YYYY-MM-DD', [Validators.required]],
       estadoPago: ['', [Validators.required]],
