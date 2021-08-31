@@ -14,12 +14,12 @@ describe('workspace-project Alquiler', () => {
     });
 
     it('Deberia crear un registro', () => {
-        const ID_PRODUCTO = '1099371662';
-        const NOMBRE_ALQUILER = 'Andrés';
-        const NUMERO_ALQUILER = '3162878186';
-        const FECHA_PAGO_ALQUILER= '2021-10-11';
+        const ID_PRODUCTO = '1099371672';
+        const NOMBRE_ALQUILER = 'Ana';
+        const NUMERO_ALQUILER = '3162877176';
+        const FECHA_PAGO_ALQUILER = '2021-10-11';
         const ESTADO_PAGO_ALQUILER = 'Cancelado';
-        const LETRA_LOCAL_ALQUILER = 'A';
+        const LETRA_LOCAL_ALQUILER = 'B';
 
         page.navigateTo();
         navBar.clickBotonAlquiler();
@@ -40,6 +40,6 @@ describe('workspace-project Alquiler', () => {
         navBar.clickBotonAlquiler();
         alquiler.clickBotonListarRegistros();
 
-        expect(4).toBe(alquiler.contarRegistros());
+        expect(1).toBe(alquiler.contarRegistros());
     });
 });

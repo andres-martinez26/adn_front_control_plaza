@@ -8,9 +8,9 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display TRM message', () => {
+  it('deberia mostrar titulo', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('El último TRM es de');
+    expect(page.getTitleText()).toBe('CONTROL DE LOCALES - PLAZA CENTRAL');
   });
 
   afterEach(async () => {
