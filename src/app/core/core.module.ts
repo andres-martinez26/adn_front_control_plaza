@@ -23,7 +23,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     RouterModule,
     MaterialModule
   ],
-  exports: [NavbarComponent],
+  exports: [NavbarComponent, MaterialModule],
   providers: [
     HttpService,
     SecurityGuard,

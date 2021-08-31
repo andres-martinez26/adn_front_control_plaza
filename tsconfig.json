@@ -30,8 +30,8 @@
       "@home/*": [
         "src/app/feature/home/*"
       ],
-      "@producto/*": [
-        "src/app/feature/producto/*"
+      "@alquiler/*": [
+        "src/app/feature/alquiler/*"
       ],
       "@shared/*": [
         "src/app/shared/*"
