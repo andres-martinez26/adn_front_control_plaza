@@ -28,7 +28,7 @@
         "src/app/core/services/*"
       ],
       "@home/*": [
-        "src/app/feature/home/*"
+        "src/app/core/components/home/*"
       ],
       "@alquiler/*": [
         "src/app/feature/alquiler/*"

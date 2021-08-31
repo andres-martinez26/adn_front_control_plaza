@@ -1,5 +1,5 @@
 <table *ngIf="datos.length > 0" mat-table [dataSource]="datos" class="mat-elevation-z8 alquiler-table">
-  <caption> Resultados de los registros de locales alquialdos </caption>
+  <caption *ngIf="datos.length === 0"> Resultados de los registros de locales alquialdos </caption>
   <ng-container matColumnDef="id">
     <th scope="col" mat-header-cell *matHeaderCellDef> ID </th>
     <td mat-cell *matCellDef="let datos"> {{datos.id}} </td>

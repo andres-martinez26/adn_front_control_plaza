@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {MatSnackBarModule} from '@angular/material/snack-bar';
@@ -68,7 +68,6 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatStepperModule,
     MatDatepickerModule,
     MatSnackBarModule
-  ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  ]
 })
 export class MaterialModule { }

@@ -1,5 +1,5 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { TrmService } from '../alquiler/shared/service/trm/trm.service';
+import { TrmService } from '../../../feature/alquiler/shared/service/trm/trm.service';
 
 import { HomeComponent } from './home.component';
 import { CommonModule } from '@angular/common';
