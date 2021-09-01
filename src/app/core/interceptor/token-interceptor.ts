@@ -8,7 +8,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class TokenInterceptor implements HttpInterceptor {
 
   constructor(private cookieService: CookieService) { }
-  //'X-App-Token': 'mKn3wDTGxRCCl3cnyxFCayWcg'
+
   intercept(req: HttpRequest<any>, next: HttpHandler):
     Observable<HttpEvent<any>> {
     const token = this.cookieService.get('token');

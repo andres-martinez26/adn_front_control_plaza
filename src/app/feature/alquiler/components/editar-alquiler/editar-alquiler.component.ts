@@ -13,7 +13,7 @@ export class EditarAlquilerComponent implements OnInit {
 
   form: FormGroup;
   id: number;
-  abc = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","U","V","W","X","Y","Z"];
+  abc = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,11 +36,12 @@ export class EditarAlquilerComponent implements OnInit {
     alquiler.id = this.id;
     this.alquilerService.update(this.id, alquiler)
     .subscribe((req) => {
-      console.log(req);
-      if (req['valor'] === 'El local ya fue alquilado' || req['valor'] === 'El registro ya existe en el sistema'){
-        alert(req['valor']);
+      // tslint:disable-next-line: no-string-literal
+      const valor = req['valor'];
+      if (valor === 'El local ya fue alquilado' || valor === 'El registro ya existe en el sistema'){
+        alert(valor);
       }else {
-        alert('Actualizado')
+        alert('Actualizado');
         this.router.navigate(['./alquiler/listar']);
       }
     });
@@ -54,7 +55,7 @@ export class EditarAlquilerComponent implements OnInit {
 
   private buildForm() {
     this.form = this.formBuilder.group({
-      nombre: ['', [Validators.required,]],
+      nombre: ['', [Validators.required, ]],
       numero: ['', [Validators.required, Validators.pattern(/^-?(|[0-9]\d*)?$/),
                       Validators.maxLength(10), Validators.minLength(10)]],
       fechaPago: ['YYYY-MM-DD', [Validators.required]],

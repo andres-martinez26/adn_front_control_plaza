@@ -7,7 +7,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AlquilerService } from '../../shared/service/alquiler/alquiler.service';
 import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MaterialModule } from 'src/app/feature/material/material.module';
+import { MaterialModule } from 'src/app/material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
 

@@ -14,7 +14,7 @@ export class CrearAlquilerComponent implements OnInit {
 
   form: FormGroup;
   alquiler: Alquiler;
-  abc = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","U","V","W","X","Y","Z"];
+  abc = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'U', 'V', 'W', 'X', 'Y', 'Z'];
   constructor(
     private formBuilder: FormBuilder,
     protected alquilerService: AlquilerService,
@@ -38,11 +38,12 @@ export class CrearAlquilerComponent implements OnInit {
     alquiler.fechaPago = alquiler.fechaPago + ' 00:00:00';
     this.alquilerService.save(alquiler)
     .subscribe(req => {
-      console.log(req);
-      if (req['valor'] === 'El local ya fue alquilado' || req['valor'] === 'El usuario ya tiene alquilado un local'){
-        alert(req['valor']);
+      // tslint:disable-next-line: no-string-literal
+      const valor = req['valor'];
+      if (valor === 'El local ya fue alquilado' || valor === 'El usuario ya tiene alquilado un local'){
+        alert(valor);
       }else {
-        alert( 'Guardado: ' + alquiler.nombre + ' debe \npagar el ' + req['valor']);
+        alert( 'Guardado: ' + alquiler.nombre + ' debe \npagar el ' + valor);
       }
       this.router.navigate(['./alquiler/listar']);
     });

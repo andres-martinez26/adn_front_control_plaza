@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TrmService } from '../../../feature/alquiler/shared/service/trm/trm.service';
+import { TrmService } from '@core/services/trm/trm.service';
 
 @Component({
   selector: 'app-home',

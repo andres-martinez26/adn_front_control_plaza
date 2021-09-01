@@ -3,7 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 
 import { TrmService } from './trm.service';
 import { HttpService } from 'src/app/core/services/http.service';
-import { Trm } from '../../model/trm';
+import { Trm } from '../../../feature/alquiler/shared/model/trm';
 
 describe('TrmService', () => {
   let httpMock: HttpTestingController;

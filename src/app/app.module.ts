@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AlquilerModule } from './feature/alquiler/alquiler.module';
-import { MaterialModule } from './feature/material/material.module';
+import { MaterialModule } from './material/material.module';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';

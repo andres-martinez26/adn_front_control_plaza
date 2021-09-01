@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '../feature/material/material.module';
+import { MaterialModule } from '../material/material.module';
 
 import { HttpClientModule } from '@angular/common/http';
 import { MensajeErrorCamposDirective } from './directivas/error-campos/directiva/mensaje-error-campos.directive';
