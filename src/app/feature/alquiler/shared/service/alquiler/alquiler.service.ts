@@ -3,6 +3,7 @@ import { HttpService } from '@core-service/http.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Alquiler } from '../../model/alquiler';
+import { Respuesta } from '../../model/respuesta';
 
 @Injectable()
 export class AlquilerService {
@@ -11,7 +12,7 @@ export class AlquilerService {
               protected http: HttpClient) { }
 
   public save(alquiler: Alquiler){
-    return this.httpS.doPost(`${environment.endpoint}/alquiler`, alquiler);
+    return this.httpS.doPost<Alquiler, Respuesta>(`${environment.endpoint}/alquiler`, alquiler);
   }
 
   getAll(){

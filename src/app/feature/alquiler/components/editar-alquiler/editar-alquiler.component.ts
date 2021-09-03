@@ -13,7 +13,8 @@ export class EditarAlquilerComponent implements OnInit {
 
   form: FormGroup;
   id: number;
-  abc = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+  abc = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+          'N', 'O', 'P', 'Q', 'R', 'S', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,15 +36,9 @@ export class EditarAlquilerComponent implements OnInit {
     const alquiler = this.form.value;
     alquiler.id = this.id;
     this.alquilerService.update(this.id, alquiler)
-    .subscribe((req) => {
-      // tslint:disable-next-line: no-string-literal
-      const valor = req['valor'];
-      if (valor === 'El local ya fue alquilado' || valor === 'El registro ya existe en el sistema'){
-        alert(valor);
-      }else {
-        alert('Actualizado');
-        this.router.navigate(['./alquiler/listar']);
-      }
+    .subscribe(() => {
+      alert('Actualizado');
+      this.router.navigate(['./alquiler/listar']);
     });
   }
 

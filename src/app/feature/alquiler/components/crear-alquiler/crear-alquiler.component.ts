@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Alquiler } from '../../shared/model/alquiler';
 import { AlquilerService } from '../../shared/service/alquiler/alquiler.service';
 import { Router } from '@angular/router';
+import { Respuesta } from '../../shared/model/respuesta';
 
 @Component({
   selector: 'app-crear-alquiler',
@@ -14,7 +15,10 @@ export class CrearAlquilerComponent implements OnInit {
 
   form: FormGroup;
   alquiler: Alquiler;
-  abc = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+
+  abc = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+          'N', 'O', 'P', 'Q', 'R', 'S', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+
   constructor(
     private formBuilder: FormBuilder,
     protected alquilerService: AlquilerService,
@@ -37,14 +41,8 @@ export class CrearAlquilerComponent implements OnInit {
     const alquiler = this.form.value;
     alquiler.fechaPago = alquiler.fechaPago + ' 00:00:00';
     this.alquilerService.save(alquiler)
-    .subscribe(req => {
-      // tslint:disable-next-line: no-string-literal
-      const valor = req['valor'];
-      if (valor === 'El local ya fue alquilado' || valor === 'El usuario ya tiene alquilado un local'){
-        alert(valor);
-      }else {
-        alert( 'Guardado: ' + alquiler.nombre + ' debe \npagar el ' + valor);
-      }
+    .subscribe((res: Respuesta) => {
+      alert( 'Guardado: ' + alquiler.nombre + ' debe \npagar el ' + res.mensaje);
       this.router.navigate(['./alquiler/listar']);
     });
   }
