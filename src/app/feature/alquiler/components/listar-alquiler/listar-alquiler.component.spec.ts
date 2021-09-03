@@ -1,3 +1,4 @@
+import { Respuesta } from '@alquiler/shared/model/respuesta';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
@@ -14,6 +15,7 @@ describe('ListarAlquilerComponent', () => {
   let component: ListarAlquilerComponent;
   let fixture: ComponentFixture<ListarAlquilerComponent>;
   let alquilerService: AlquilerService;
+  const respuesta: Respuesta = {mensaje: ''};
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -35,7 +37,7 @@ describe('ListarAlquilerComponent', () => {
     component = fixture.componentInstance;
     alquilerService = TestBed.inject(AlquilerService);
     spyOn(alquilerService, 'save').and.returnValue(
-      of(true)
+      of(respuesta)
     );
     fixture.detectChanges();
   });

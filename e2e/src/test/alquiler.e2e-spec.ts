@@ -40,6 +40,6 @@ describe('workspace-project Alquiler', () => {
         navBar.clickBotonAlquiler();
         alquiler.clickBotonListarRegistros();
 
-        expect(1).toBe(alquiler.contarRegistros());
+        expect(alquiler.contarRegistros()).toBeGreaterThan(0);
     });
 });

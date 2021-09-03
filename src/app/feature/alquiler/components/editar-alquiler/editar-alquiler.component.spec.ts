@@ -10,11 +10,13 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
+import { Respuesta } from '@alquiler/shared/model/respuesta';
 
 describe('EditarAlquilerComponent', () => {
   let component: EditarAlquilerComponent;
   let fixture: ComponentFixture<EditarAlquilerComponent>;
   let alquilerService: AlquilerService;
+  const respuesta: Respuesta = {mensaje: ''};
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -38,7 +40,7 @@ describe('EditarAlquilerComponent', () => {
     component = fixture.componentInstance;
     alquilerService = TestBed.inject(AlquilerService);
     spyOn(alquilerService, 'save').and.returnValue(
-      of(true)
+      of(respuesta)
     );
     fixture.detectChanges();
   });

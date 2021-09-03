@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { Alquiler } from '../../model/alquiler';
 import { HttpService } from 'src/app/core/services/http.service';
 import { HttpResponse } from '@angular/common/http';
+import { Respuesta } from '@alquiler/shared/model/respuesta';
 
 describe('AlquilerService', () => {
 
@@ -65,11 +66,11 @@ describe('AlquilerService', () => {
   it('deberia crear un registro', () => {
     const dummyData = alquiler1;
     service.save(dummyData).subscribe((respuesta) => {
-      expect(respuesta).toEqual(true);
+      expect(respuesta.mensaje).toEqual('2021-11-15');
     });
     const req = httpMock.expectOne(apiEndpointAlquiler);
     expect(req.request.method).toBe('POST');
-    req.event(new HttpResponse<boolean>({body: true}));
+    req.event(new HttpResponse<Respuesta>({body: {mensaje : '2021-11-15'}}));
   });
 
   it('deberia actualizar un registro', () => {

@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AlquilerService } from '../../shared/service/alquiler/alquiler.service';
+import { Respuesta } from '../../shared/model/respuesta';
 import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material/material.module';
@@ -15,6 +16,7 @@ describe('CrearAlquilerComponent', () => {
   let component: CrearAlquilerComponent;
   let fixture: ComponentFixture<CrearAlquilerComponent>;
   let alquilerService: AlquilerService;
+  const respuesta: Respuesta = {mensaje: ''};
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -38,7 +40,7 @@ describe('CrearAlquilerComponent', () => {
     component = fixture.componentInstance;
     alquilerService = TestBed.inject(AlquilerService);
     spyOn(alquilerService, 'save').and.returnValue(
-      of(true)
+      of(respuesta)
     );
     fixture.detectChanges();
   });
