@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Alquiler } from '../../shared/model/alquiler';
 import { AlquilerService } from '../../shared/service/alquiler/alquiler.service';
 import { Router } from '@angular/router';
+import { Respuesta } from '../../shared/model/respuesta';
 
 @Component({
   selector: 'app-crear-alquiler',
@@ -14,7 +15,10 @@ export class CrearAlquilerComponent implements OnInit {
 
   form: FormGroup;
   alquiler: Alquiler;
-  abc = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","U","V","W","X","Y","Z"];
+
+  abc = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+          'N', 'O', 'P', 'Q', 'R', 'S', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+
   constructor(
     private formBuilder: FormBuilder,
     protected alquilerService: AlquilerService,
@@ -27,17 +31,18 @@ export class CrearAlquilerComponent implements OnInit {
     // Intencionado
   }
 
+  crear() {
+    this.alquilerService.save(this.form.value).subscribe(req => {
+      return req;
+    });
+  }
+
   save(){
     const alquiler = this.form.value;
     alquiler.fechaPago = alquiler.fechaPago + ' 00:00:00';
     this.alquilerService.save(alquiler)
-    .subscribe(req => {
-      console.log(req);
-      if (req['valor'] === 'El local ya fue alquilado' || req['valor'] === 'El usuario ya tiene alquilado un local'){
-        alert(req['valor']);
-      }else {
-        alert( 'Guardado: ' + alquiler.nombre + ' debe \npagar el ' + req['valor']);
-      }
+    .subscribe((res: Respuesta) => {
+      alert( 'Guardado: ' + alquiler.nombre + ' debe \npagar el ' + res.mensaje);
       this.router.navigate(['./alquiler/listar']);
     });
   }
@@ -50,10 +55,10 @@ export class CrearAlquilerComponent implements OnInit {
 
   private buildForm() {
     this.form = this.formBuilder.group({
-      id: ['', [Validators.required, Validators.pattern(/^-?(|[0-9]\d*)?$/), 
+      id: ['', [Validators.required, Validators.pattern(/^-?(|[0-9]\d*)?$/),
                 Validators.maxLength(10), Validators.minLength(10)]],
-      nombre: ['', [Validators.required,]],
-      numero: ['', [Validators.required, Validators.pattern(/^-?(|[0-9]\d*)?$/), 
+      nombre: ['', [Validators.required, ]],
+      numero: ['', [Validators.required, Validators.pattern(/^-?(|[0-9]\d*)?$/),
                 Validators.maxLength(10), Validators.minLength(10)]],
       fechaPago: ['YYYY-MM-DD', [Validators.required]],
       estadoPago: ['', [Validators.required]],

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MaterialModule } from '../material/material.module';
 
 import { HttpClientModule } from '@angular/common/http';
 import { MensajeErrorCamposDirective } from './directivas/error-campos/directiva/mensaje-error-campos.directive';
@@ -17,7 +18,7 @@ import { TrackByPipe } from './pipe/track-by.pipe';
     MensajeErrorCamposSubmitDirective,
     TrackByPipe
   ],
-  imports: [ReactiveFormsModule, FormsModule, ],
+  imports: [ReactiveFormsModule, FormsModule, MaterialModule],
   exports: [
     CommonModule,
     HttpClientModule,
@@ -26,6 +27,7 @@ import { TrackByPipe } from './pipe/track-by.pipe';
     MensajeErrorCamposSubmitDirective,
     ReactiveFormsModule,
     FormsModule,
+    MaterialModule
   ]
 })
 export class SharedModule { }

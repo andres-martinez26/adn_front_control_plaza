@@ -1,12 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { AlquilerModule } from './feature/alquiler/alquiler.module';
-
+import { MaterialModule } from './material/material.module';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from '@home/home.component';
-import { ProductoModule } from '@producto/producto.module';
+import { HomeComponent } from '@core/components/home/home.component';
 import { CoreModule } from '@core/core.module';
 import { CookieService } from 'ngx-cookie-service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,13 +19,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ProductoModule,
     CoreModule,
     BrowserAnimationsModule,
-    AlquilerModule
+    AlquilerModule,
+    MaterialModule
   ],
+  exports: [MaterialModule],
   providers: [CookieService],
-    bootstrap: [AppComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

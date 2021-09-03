@@ -8,9 +8,9 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('deberia mostrar titulo', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Angular Seed');
+    expect(page.getTitleText()).toBe('CONTROL DE LOCALES - PLAZA CENTRAL');
   });
 
   afterEach(async () => {

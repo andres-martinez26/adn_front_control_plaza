@@ -28,10 +28,10 @@
         "src/app/core/services/*"
       ],
       "@home/*": [
-        "src/app/feature/home/*"
+        "src/app/core/components/home/*"
       ],
-      "@producto/*": [
-        "src/app/feature/producto/*"
+      "@alquiler/*": [
+        "src/app/feature/alquiler/*"
       ],
       "@shared/*": [
         "src/app/shared/*"
